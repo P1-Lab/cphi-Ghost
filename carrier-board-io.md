@@ -1,54 +1,132 @@
-<B>Carrier Board I/O: The Ghost Slot and Physical Firewalls</b><P>
-The cphi-Ghost carrier board is the central nervous system that bridges the Rockchip RK3588 SoM to the physical world. It is designed with Forensic Isolation—ensuring that hardware remains subservient to the user’s physical commands, regardless of software state.
-<P></P>
-<b>1. The Ghost Slot (M.2 Key-B)</b><BR>
-The cellular modem is isolated on a modular M.2 Key-B interface (typically 3042 or 3052 form factor). This prevents the baseband processor from having Direct Memory Access (DMA) to the main CPU, a common vulnerability in standard smartphones.<P></P>
-<b>Critical Pinout (75-Position Connector):</b><P></P>
-<UL><LI>Pins 2, 4, 70, 72, 74 (3.3V): Power rail for the modem.
-<LI>Pins 1, 3, 5, 11, 27, 33, etc. (GND): Ground plane.
-<LI>Pins 6 & 8 (W_DISABLE#): Hardware Airplane Mode. Logic LOW disables the RF radio.
-<LI>Pins 67 (RESET#): Hardware reset for the modem.
-<LI>USB 2.0/3.0 Interface: The primary data path between the RK3588 and the Modem.</UL>
-<P></P>
-<B>2. Physical Trace-Break Firewalls</B>
-Mechanical Circuit Interventions
-The Ghost features three heavy-duty SPST (Single Pole Single Throw) toggle switches. These are not "request buttons" for the OS; they are physical circuit breakers.
-<P></P>
-<B> MIC_KILL (Acoustic Firewall)</B><BR>
+<h1>Carrier Board I/O: The Ghost Slot and Physical Firewalls</h1>
 
-<UL><LI>Component: MEMS Microphone Array</LI>
-<LI>Circuit Intervention: Interrupts VDD (3.3V)</LI>
-<LI>Effect: Total acoustic silence. No signal can reach the ADC.</LI></UL>
+<p>
+The cphi-Ghost carrier board is the central nervous system that bridges the Rockchip RK3588 SoM to the physical world.
+It is designed with Forensic Isolation—ensuring that hardware remains subservient to the user’s physical commands,
+regardless of software state.
+</p>
 
-<B>CAM_KILL (Optical Firewall)</b><BR>
+<h2>1. The Ghost Slot (M.2 Key-B)</h2>
 
-<UL> <LI>Component: 50MP Sony IMX Module</LI>
-<LI>Circuit Intervention: Interrupts CSI Clock / Power</LI>
-<LI>Effect: The sensor cannot initialize. The OS sees "Device Not Found."</LI>
-</UL>
-<b>MODEM_KILL (RF Firewall)</b><BR>
-<UL>
-<LI>Component: M.2 Key-B Slot</LI>
-<LI>Circuit Intervention: Interrupts 3.3V Main Rail</LI>
-<LI>Effect: The modem is completely depowered. Total RF invisibility.</LI></ul>
-<P></P>
+<p>
+The cellular modem is isolated on a modular M.2 Key-B interface (typically 3042 or 3052 form factor).
+This prevents the baseband processor from having direct memory access (DMA) to the main CPU,
+a common vulnerability in standard smartphones.
+</p>
 
-<b>3. VGL-1 and Lomo Control Logic</b><BR>
-These controls use high-reliability slide and hall-effect sensors to trigger the vitrification logic in the ghost-daemon.<P>
-<b>VGL-1 Mode Switch (3-Position Slide)</b>
-Connected to the RK3588 GPIO Bank 1 (GPIO1_D0 and GPIO1_D1).
-<UL><LI>Logic Calculation: pin = bank * 32 + (group * 8 + X)
-<LI>GPIO 56 (1_D0): High = Clinical / Low = U47 Mode.</LI>
-<LI>GPIO 57 (1_D1): High = Clinical / Low = 4038 Mode.</LI></UL><P>
-<b>Lomo Sled Detection</b><BR>
-<UL><LI>Sensor: Sub-miniature Hall Effect Sensor (Digital Output).</LI>
-<LI>GPIO 58 (1_D2): Triggered by the neodymium magnet on the lens carriage.</LI>
-<LI>Action: Logic LOW triggers the LomoDSP image pipeline to engage vignetting and chromatic aberration filters.</LI></UL>
-<P></P>
-<b>4. Expansion Header (Sovereign Utility)</b><BR>
+<h3>Critical Pinout (75-Position Connector)</h3>
+
+<p><strong>Power Rails:</strong></p>
+<p>
+Pins 2, 4, 70, 72, 74 — 3.3V supply to modem
+</p>
+
+<p><strong>Ground:</strong></p>
+<p>
+Pins 1, 3, 5, 11, 27, 33 (and others) — Ground plane
+</p>
+
+<p><strong>Control Signals:</strong></p>
+
+<p>
+W_DISABLE# (Pins 6 &amp; 8): Hardware airplane mode. Logic LOW disables RF radio.
+</p>
+
+<p>
+RESET# (Pin 67): Hardware reset for modem
+</p>
+
+<p><strong>Data Path:</strong></p>
+<p>
+USB 2.0 / USB 3.0 interface between RK3588 and modem
+</p>
+
+<h2>2. Physical Trace-Break Firewalls</h2>
+
+<p>
+The Ghost features three heavy-duty SPST toggle switches.
+These are not software requests—they are physical circuit breakers.
+</p>
+
+<table>
+<tr>
+<th>Switch</th>
+<th>Component</th>
+<th>Circuit Intervention</th>
+<th>Effect</th>
+</tr>
+
+<tr>
+<td>MIC_KILL</td>
+<td>MEMS Microphone Array</td>
+<td>Interrupts 3.3V VDD</td>
+<td>Total acoustic silence. No signal reaches ADC.</td>
+</tr>
+
+<tr>
+<td>CAM_KILL</td>
+<td>50MP Sony IMX Sensor</td>
+<td>Interrupts CSI clock / power</td>
+<td>Sensor cannot initialize. OS reports device not found.</td>
+</tr>
+
+<tr>
+<td>MODEM_KILL</td>
+<td>M.2 Key-B Slot</td>
+<td>Interrupts 3.3V main rail</td>
+<td>Total RF invisibility. Full hardware shutdown.</td>
+</tr>
+</table>
+
+<h2>3. VGL-1 and Lomo Control Logic</h2>
+
+<p>
+These controls use high-reliability slide and Hall-effect sensors
+to trigger vitrification logic in the ghost-daemon.
+</p>
+
+<h3>VGL-1 Mode Switch (3-Position Slide)</h3>
+
+<p>
+Connected to RK3588 GPIO Bank 1 (GPIO1_D0 and GPIO1_D1).
+</p>
+
+<p>
+Logic mapping:
+</p>
+
+<p>
+GPIO 56 (1_D0): High = Clinical / Low = U47 Mode<br>
+GPIO 57 (1_D1): High = Clinical / Low = 4038 Mode
+</p>
+
+<h3>Lomo Sled Detection</h3>
+
+<p>
+Sensor: Sub-miniature Hall-effect sensor (digital output)
+</p>
+
+<p>
+GPIO 58 (1_D2): Triggered by neodymium magnet on lens carriage
+</p>
+
+<p>
+Action: Logic LOW triggers LomoDSP pipeline (vignetting + chromatic aberration)
+</p>
+
+<h2>4. Expansion Header (Sovereign Utility)</h2>
+
+<p>
 For field research, a 10-pin header provides direct access to the RK3588:
-UART (TX/RX): For serial console access.
-I2C: For external environmental sensors.
-5V / 3.3V / GND: External power for peripherals.<P></P><BR>
-A=A. The circuit is the law.
+</p>
 
+<ul>
+<li>UART (TX/RX): Serial console access</li>
+<li>I2C: External environmental sensors</li>
+<li>5V / 3.3V / GND: Peripheral power supply</li>
+</ul>
+
+<blockquote>
+A = A.<br>
+The circuit is the law.
+</blockquote>
