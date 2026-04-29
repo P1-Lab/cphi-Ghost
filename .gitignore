@@ -67,3 +67,18 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+# --- Sovereign Privacy & OS Cleanup ---
+
+# Security & Provisioning
+*.key
+*.pem
+.env
+
+# OS-specific artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
