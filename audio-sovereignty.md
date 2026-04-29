@@ -1,28 +1,95 @@
-<b>Audio Sovereignty: The Physics of VGL-1 Vitrification</b><BR>
-Modern digital communication is a "subtraction" of reality. To save bandwidth, codecs strip away the harmonics, transients, and air that constitute the human presence. The cphi-Ghost uses the VGL-1 Engine to perform "Audio Vitrification"—restoring the acoustic mass and historical weight of the voice through deterministic DSP modeling.
+<h1>Audio Sovereignty: The Physics of VGL-1 Vitrification</h1>
 
-<b>1. The VGL-1 Philosophy</b><BR>
-We do not use "filters" in the consumer sense. We use Physical Component Modeling. The engine treats the incoming 24-bit MEMS audio stream as a raw pressure gradient and applies the non-linear transfer functions of legendary studio hardware.
-<P></P>
-<b>2. Profile: Neumann U47 (The Silk Standard)</b>
-The U47 is the reference standard for vocal clarity. Its character is defined by the M7 capsule and the VF14 vacuum tube.
-<p><UL><LI>Harmonic Logic: Soft-knee saturation. The VF14 tube introduces even-order harmonics (warmth) when the signal peaks.</LI>
-<LI>Frequency Signature: - Presence: A +3dB to +5dB shelf centered between 5kHz and 8kHz. This creates "silk"—the illusion of the speaker being in the same room.
-<LI>Low End: Flat down to 40Hz with a gentle roll-off below to eliminate sub-sonic mud.</LI>
-<LI>The Effect: Authority and intimacy. Ideal for forensic witness statements or high-stakes negotiation.</LI></UL>
-<P></P>
-<b>3. Profile: Coles 4038 (The BBC Broadcast Standard)</b>
-The 4038 is a "Pressure Gradient" ribbon microphone. It is famous for its dark, creamy, and massive low-frequency response.<P></P>
-<ul><LI>Harmonic Logic: Odd-harmonic saturation. The internal toroidal transformer adds "iron" character—a subtle grit in the low-mids (200Hz - 600Hz).</LI>
-<P></P>Frequency Signature:
-<LI>Darkness: A steep low-pass roll-off starting at 12kHz. Digital "shimmer" is eliminated.</LI>
-<LI>The Proximity Bloom: A Gaussian boost centered at 200Hz. This replicates the physics of a 1.08kg ribbon being moved by the speaker’s breath.</LI>
-<LI>The Effect: The "Voice of God." Massive, centered, and physically imposing. Ideal for broadcasting or high-clarity command transmission.</LI></ul>
-<P></P>
-<b>4. Implementation Logic</b>
-The ghost-daemon routes the audio through a LADSPA chain before it reaches the ModemManager or VoIP sink.<P></P>
-<UL><LI>A=A (Clinical): 0dB gain. Bit-perfect pass-through.</LI>
-<LI>Vitrification: The selected profile is applied using 64-bit float precision to ensure no quantization noise is introduced during the harmonic injection process.</LI>
-<LI>Latency: The entire VGL-1 pipeline operates at <5ms latency, ensuring the vitrification remains transparent to the flow of conversation.</LI>
-</UL><P></P>A=A. Your voice has mass. We restore it.
+<p>
+Modern digital communication is a subtraction of reality. To save bandwidth, codecs strip away
+the harmonics, transients, and air that constitute human presence.
+The cphi-Ghost uses the VGL-1 Engine to perform Audio Vitrification—restoring acoustic mass
+and historical weight to the voice through deterministic DSP modeling.
+</p>
 
+<h2>1. The VGL-1 Philosophy</h2>
+
+<p>
+We do not use filters in the consumer sense. We use Physical Component Modeling.
+The engine treats the incoming 24-bit MEMS audio stream as a raw pressure gradient
+and applies non-linear transfer functions derived from legendary studio hardware.
+</p>
+
+<h2>2. Profile: Neumann U47 (The Silk Standard)</h2>
+
+<p>
+The U47 is the reference standard for vocal clarity. Its character is defined by the M7 capsule
+and VF14 vacuum tube.
+</p>
+
+<h3>Harmonic Logic</h3>
+
+<p>
+Soft-knee saturation. The VF14 tube introduces even-order harmonics when the signal peaks,
+producing warmth and controlled compression.
+</p>
+
+<h3>Frequency Signature</h3>
+
+<ul>
+<li><strong>Presence:</strong> +3dB to +5dB shelf centered between 5kHz and 8kHz (creates “silk”)</li>
+<li><strong>Low End:</strong> Flat response to ~40Hz with gentle sub-bass roll-off</li>
+</ul>
+
+<h3>The Effect</h3>
+
+<p>
+Authority and intimacy. Ideal for forensic witness statements or high-stakes negotiation.
+</p>
+
+<h2>3. Profile: Coles 4038 (The BBC Broadcast Standard)</h2>
+
+<p>
+The 4038 is a pressure-gradient ribbon microphone known for dark, dense tonal character.
+</p>
+
+<h3>Harmonic Logic</h3>
+
+<p>
+Odd-harmonic saturation. The internal transformer introduces subtle iron-like distortion
+in the low-midrange (200Hz–600Hz).
+</p>
+
+<h3>Frequency Signature</h3>
+
+<ul>
+<li><strong>High Roll-Off:</strong> Steep low-pass beginning at ~12kHz</li>
+<li><strong>Proximity Bloom:</strong> Gaussian emphasis centered at 200Hz</li>
+</ul>
+
+<p>
+This replicates the physical displacement of a 1.08kg ribbon reacting to air pressure.
+</p>
+
+<h3>The Effect</h3>
+
+<p>
+“Voice of God” presence—massive, centered, physically authoritative.
+Ideal for broadcast or command transmission.
+</p>
+
+<h2>4. Implementation Logic</h2>
+
+<p>
+The ghost-daemon routes audio through a LADSPA chain before reaching ModemManager or VoIP sinks.
+</p>
+
+<ul>
+<li><strong>A = A (Clinical):</strong> 0dB gain, bit-perfect pass-through</li>
+<li><strong>Vitrification:</strong> Profile applied using 64-bit float precision</li>
+<li><strong>Latency:</strong> &lt; 5ms total pipeline latency</li>
+</ul>
+
+<p>
+This ensures harmonic modeling without perceptible delay or quantization artifacts.
+</p>
+
+<blockquote>
+A = A.<br>
+Your voice has mass. We restore it.
+</blockquote>
